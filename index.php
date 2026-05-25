@@ -237,7 +237,7 @@ session_start();
                         <div class="col-12 col-md">
                             <div class="d-flex flex-wrap align-items-center gap-2 mb-1 justify-content-md-start justify-content-center">
                                 <h3 class="menu-title m-0">Notulen Rapat & Pelatihan</h3>
-                                <span class="badge bg-primary-subtle text-primary badge-status-pill">Akses Pegawai & Admin</span>
+                                <span class="badge bg-primary-subtle text-primary badge-status-pill">Pegawai</span>
                             </div>
                             <p class="menu-desc">Dokumentasikan agenda rapat dinas, pembuatan laporan berkala, serta rekapitulasi usulan pendidikan & pelatihan staf.</p>
                         </div>
@@ -259,7 +259,7 @@ session_start();
                         <div class="col-12 col-md">
                             <div class="d-flex flex-wrap align-items-center gap-2 mb-1 justify-content-md-start justify-content-center">
                                 <h3 class="menu-title m-0">Pengajuan Layanan Cuti</h3>
-                                <span class="badge bg-success-subtle text-success badge-status-pill">Akses Pegawai & Admin</span>
+                                <span class="badge bg-success-subtle text-success badge-status-pill">Pegawai</span>
                             </div>
                             <p class="menu-desc">Formulir pengajuan cuti aparatur terintegrasi, kalkulasi sisa kuota tahunan, pencetakan berkas fisik, dan upload dokumen persetujuan.</p>
                         </div>
