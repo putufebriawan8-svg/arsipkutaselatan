@@ -1,0 +1,151 @@
+/*
+ * app.css - SIPARSIP Premium Styling & Micro-interactions
+ * Provides rich aesthetics, custom dark mode, glassmorphism, scrollbars, and keyframes.
+ */
+
+/* Custom Smooth Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--outline-variant, #c5c5d3);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--outline, #757682);
+}
+
+/* Glassmorphism Panels */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+.dark .glass-panel {
+  background: rgba(26, 27, 33, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(68, 70, 81, 0.4);
+}
+
+/* Premium Animations */
+@keyframes slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes empty-trash-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.92);
+    opacity: 0.5;
+    background-color: var(--error-container);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes ripple-wave {
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 35, 111, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 20px rgba(0, 35, 111, 0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.25s ease-out forwards;
+}
+
+.animate-trash-sweep {
+  animation: empty-trash-pulse 0.6s ease-in-out;
+}
+
+/* Custom interactive effects */
+.nav-link-active {
+  background-color: var(--primary-container) !important;
+  color: var(--on-primary-container) !important;
+  font-weight: 700 !important;
+}
+
+.dark .nav-link-active {
+  background-color: var(--primary) !important;
+  color: var(--on-primary) !important;
+}
+
+.btn-interactive:active {
+  transform: scale(0.96);
+  opacity: 0.9;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 35, 111, 0.15), 0 8px 10px -6px rgba(0, 35, 111, 0.1);
+}
+
+.dark .hover-glow:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* File explorer drag-and-drop area */
+.drag-zone-active {
+  border: 2px dashed var(--primary);
+  background-color: var(--primary-fixed);
+  opacity: 0.9;
+  transform: scale(0.99);
+  transition: all 0.3s ease;
+}
+
+/* Kanban column hover state */
+.kanban-column-over {
+  background-color: var(--surface-container);
+  border: 2px dashed var(--outline-variant);
+  transition: all 0.2s ease;
+}
+
+/* Custom Card Shadows */
+.card-premium-shadow {
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.dark .card-premium-shadow {
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Toggle Switch Styling */
+.toggle-checkbox:checked + .toggle-label {
+  background-color: var(--primary);
+}
+.toggle-checkbox:checked + .toggle-label::after {
+  transform: translateX(1.5rem);
+}

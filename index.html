@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="id" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>SIPARSIP - Digital Archive System</title>
+  
+  <!-- Tailwind CSS & Plugins via CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  
+  <!-- Modern Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  
+  <!-- Material Symbols Outlined Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+  
+  <!-- Custom Overrides and Animations -->
+  <link rel="stylesheet" href="app.css"/>
+
+  <!-- Config Tailwind Tailwind settings exactly matching design specification -->
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "background": "#faf8ff",
+            "on-surface-variant": "#444651",
+            "on-secondary": "#ffffff",
+            "surface-container": "#eeedf4",
+            "on-secondary-container": "#54647a",
+            "tertiary-container": "#004942",
+            "primary-container": "#1e3a8a",
+            "surface-variant": "#e3e1e9",
+            "on-error": "#ffffff",
+            "surface-tint": "#4059aa",
+            "surface-container-low": "#f4f3fa",
+            "on-tertiary-fixed": "#00201d",
+            "on-primary-fixed": "#00164e",
+            "on-secondary-fixed": "#0b1c30",
+            "error-container": "#ffdad6",
+            "secondary-fixed-dim": "#b7c8e1",
+            "on-error-container": "#93000a",
+            "surface-bright": "#faf8ff",
+            "tertiary": "#00312c",
+            "inverse-surface": "#2f3036",
+            "on-tertiary-container": "#4ebdb0",
+            "tertiary-fixed": "#89f5e7",
+            "on-secondary-fixed-variant": "#38485d",
+            "primary": "#00236f",
+            "surface-container-highest": "#e3e1e9",
+            "on-primary-container": "#90a8ff",
+            "secondary-container": "#d0e1fb",
+            "primary-fixed": "#dce1ff",
+            "inverse-on-surface": "#f1f0f7",
+            "error": "#ba1a1a",
+            "surface-container-high": "#e9e7ef",
+            "on-tertiary-fixed-variant": "#005049",
+            "secondary-fixed": "#d3e4fe",
+            "on-primary": "#ffffff",
+            "tertiary-fixed-dim": "#6bd8cb",
+            "outline-variant": "#c5c5d3",
+            "on-primary-fixed-variant": "#264191",
+            "outline": "#757682",
+            "on-surface": "#1a1b21",
+            "on-background": "#1a1b21",
+            "inverse-primary": "#b6c4ff",
+            "surface": "#faf8ff",
+            "primary-fixed-dim": "#b6c4ff",
+            "surface-dim": "#dad9e1",
+            "secondary": "#505f76"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "margin-desktop": "32px",
+            "xs": "4px",
+            "max-width": "1440px",
+            "sm": "8px",
+            "gutter": "16px",
+            "base": "4px",
+            "lg": "24px",
+            "margin-mobile": "16px",
+            "xl": "32px",
+            "md": "16px"
+          },
+          "fontFamily": {
+            "headline-sm": ["Inter"],
+            "headline-md": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "body-md": ["Inter"],
+            "label-md": ["Inter"],
+            "body-sm": ["Inter"],
+            "code-sm": ["JetBrains Mono"],
+            "headline-lg": ["Inter"],
+            "body-lg": ["Inter"]
+          },
+          "fontSize": {
+            "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+            "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+            "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+            "code-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+            "headline-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background dark:bg-surface-dim text-on-background min-h-screen transition-colors duration-200">
+
+  <!-- ================= LOGIN SCREEN VIEW ================= -->
+  <div id="login-view" class="min-h-screen flex flex-col items-center justify-between bg-surface-container-low dark:bg-surface-dim transition-colors duration-200">
+    <div class="flex-grow flex items-center justify-center w-full px-margin-mobile md:px-margin-desktop py-xl">
+      <div class="bg-surface-container-lowest dark:bg-surface border border-outline-variant dark:border-outline login-card-shadow p-xl flex flex-col items-center text-center max-w-[480px] w-full rounded-xl card-premium-shadow animate-slide-up">
+        <!-- Branding Header -->
+        <div class="mb-xl">
+          <div class="flex items-center justify-center mb-md">
+            <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center shadow-lg animate-pulse">
+              <span class="material-symbols-outlined text-on-primary text-[32px]">folder_managed</span>
+            </div>
+          </div>
+          <h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed-dim tracking-tight mb-xs">SIPARSIP</h1>
+          <p class="font-label-md text-label-md text-secondary dark:text-secondary-fixed-dim uppercase tracking-[0.2em]">Digital Archive System</p>
+        </div>
+        
+        <!-- Welcome Text -->
+        <div class="mb-xl">
+          <h2 class="font-headline-sm text-headline-sm text-on-surface mb-xs dark:text-white">Selamat Datang di SIPARSIP</h2>
+          <p class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant max-w-[320px] mx-auto">
+            Sistem Pengarsipan Digital Puskesmas Terpadu
+          </p>
+        </div>
+        
+        <!-- Action Area -->
+        <div class="w-full space-y-md">
+          <button id="google-login-btn" class="w-full h-12 flex items-center justify-center gap-md border border-outline-variant dark:border-outline bg-surface dark:bg-surface-container-high hover:bg-surface-variant dark:hover:bg-outline-variant transition-all rounded-lg cursor-pointer active:scale-[0.98] group hover-glow btn-interactive">
+            <svg height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"></path>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+            </svg>
+            <span class="font-headline-sm text-[16px] text-on-surface dark:text-white">Masuk dengan Google</span>
+          </button>
+          <p class="font-body-sm text-body-sm text-secondary dark:text-secondary-fixed-dim px-lg">
+            Hanya akun Google resmi organisasi yang dapat mengakses sistem
+          </p>
+          <div class="flex flex-col space-y-sm mt-4">
+            <input type="email" id="email-login-input" placeholder="Email organisasi" class="w-full h-12 px-4 border border-outline-variant dark:border-outline rounded-lg bg-surface-container-low dark:bg-surface-dim text-body-md focus:outline-none focus:ring-2 focus:ring-primary" />
+            <button id="email-login-btn" class="w-full h-12 flex items-center justify-center bg-primary text-on-primary rounded-lg hover:bg-primary/90 active:scale-[0.98]">Masuk dengan Email</button>
+          </div>
+        </div>
+        
+        <!-- Security Badge -->
+        <div class="mt-xl pt-xl border-t border-outline-variant dark:border-outline w-full flex items-center justify-center gap-sm">
+          <span class="material-symbols-outlined text-[16px] text-tertiary-container dark:text-on-tertiary-container" style="font-variation-settings: 'FILL' 1;">encrypted</span>
+          <span class="font-label-md text-label-md text-on-tertiary-fixed-variant dark:text-tertiary-fixed-dim">End-to-End Encrypted Storage</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer Component -->
+    <footer class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-lg w-full bg-surface-container-low dark:bg-surface-dim border-t border-outline-variant dark:border-outline">
+      <div class="flex flex-col md:flex-row items-center gap-md">
+        <span class="font-headline-sm text-headline-sm text-primary dark:text-primary-fixed-dim">SIPARSIP</span>
+        <span class="font-label-md text-label-md text-secondary dark:text-secondary-fixed-dim">© 2026 SIPARSIP Digital Archiving System. All rights reserved.</span>
+      </div>
+      <div class="flex flex-wrap justify-center gap-lg mt-md md:mt-0">
+        <a class="font-label-md text-label-md text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors cursor-pointer" href="#">Privacy Policy</a>
+        <a class="font-label-md text-label-md text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors cursor-pointer" href="#">Terms of Service</a>
+        <a class="font-label-md text-label-md text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors cursor-pointer" href="#">Security Audit</a>
+        <a class="font-label-md text-label-md text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors cursor-pointer" href="#">Contact Support</a>
+      </div>
+    </footer>
+    
+    <!-- Background Decoration for Depth -->
+    <div class="fixed top-0 left-0 w-full h-full -z-10 opacity-40 pointer-events-none overflow-hidden">
+      <div class="absolute top-[-10%] left-[-5%] w-[40%] h-[40%] bg-primary-container rounded-full blur-[120px] opacity-20"></div>
+      <div class="absolute bottom-[-10%] right-[-5%] w-[40%] h-[40%] bg-secondary-container rounded-full blur-[120px] opacity-20"></div>
+    </div>
+  </div>
+
+
+  <!-- ================= MAIN ADMIN DASHBOARD SHELL ================= -->
+  <div id="admin-shell" class="hidden min-h-screen">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="flex flex-col h-screen fixed left-0 top-0 py-lg px-md gap-sm bg-surface-container-low dark:bg-surface-container border-r border-outline-variant dark:border-outline w-64 z-50 transition-all duration-200">
+      <div class="flex items-center gap-md mb-xl px-sm">
+        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center shadow-md">
+          <span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+        </div>
+        <div>
+          <h1 class="text-headline-sm font-headline-sm font-black text-primary dark:text-primary-fixed-dim">SIPARSIP</h1>
+          <p class="text-label-md font-label-md text-secondary dark:text-secondary-fixed-dim opacity-70">Digital Archive</p>
+        </div>
+      </div>
+      
+      <nav class="flex-1 space-y-xs">
+        <a id="nav-dashboard" class="flex items-center gap-md px-md py-sm text-secondary dark:text-secondary-fixed-dim hover:bg-surface-variant dark:hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#/dashboard">
+          <span class="material-symbols-outlined">dashboard</span>
+          <span class="text-label-md font-label-md">Dashboard</span>
+        </a>
+        <a id="nav-explorer" class="flex items-center gap-md px-md py-sm text-secondary dark:text-secondary-fixed-dim hover:bg-surface-variant dark:hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#/explorer">
+          <span class="material-symbols-outlined">folder_open</span>
+          <span class="text-label-md font-label-md">File Explorer</span>
+        </a>
+        <a id="nav-tasks" class="flex items-center gap-md px-md py-sm text-secondary dark:text-secondary-fixed-dim hover:bg-surface-variant dark:hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#/tasks">
+          <span class="material-symbols-outlined">assignment</span>
+          <span class="text-label-md font-label-md">Task Management</span>
+        </a>
+        <a id="nav-governance" class="flex items-center gap-md px-md py-sm text-secondary dark:text-secondary-fixed-dim hover:bg-surface-variant dark:hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#/governance">
+          <span class="material-symbols-outlined">group</span>
+          <span class="text-label-md font-label-md">User Governance</span>
+        </a>
+      </nav>
+      
+      <div class="border-t border-outline-variant dark:border-outline pt-md space-y-xs">
+        <a id="nav-security" class="flex items-center gap-md px-md py-sm text-secondary dark:text-secondary-fixed-dim hover:bg-surface-variant dark:hover:bg-surface-container-high rounded-lg" href="#/security">
+          <span class="material-symbols-outlined">security</span>
+          <span class="text-label-md font-label-md">Security Log</span>
+        </a>
+        <a id="nav-help" class="flex items-center gap-md px-md py-sm text-secondary dark:text-secondary-fixed-dim hover:bg-surface-variant dark:hover:bg-surface-container-high rounded-lg" href="#/help">
+          <span class="material-symbols-outlined">help</span>
+          <span class="text-label-md font-label-md">Help</span>
+        </a>
+      </div>
+      
+      <!-- User profile at bottom -->
+      <div class="border-t border-outline-variant dark:border-outline pt-md mt-sm flex items-center gap-sm cursor-pointer hover:bg-surface-container-high dark:hover:bg-surface-variant p-2 rounded-lg transition-colors" id="sidebar-user-trigger">
+        <img id="sidebar-user-avatar" alt="User profile" class="w-8 h-8 rounded-full bg-secondary-container" src="">
+        <div class="hidden lg:block text-left overflow-hidden">
+          <p id="sidebar-user-name" class="text-label-md font-bold text-on-surface dark:text-white truncate max-w-[120px]">Super Admin</p>
+          <p id="sidebar-user-role" class="text-[10px] text-secondary dark:text-secondary-fixed-dim truncate">System Root</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area Canvas -->
+    <main class="ml-64 min-h-screen flex flex-col">
+      
+      <!-- Top Header Bar -->
+      <header class="flex justify-between items-center w-full px-margin-desktop h-16 sticky top-0 z-40 bg-surface dark:bg-surface-container border-b border-outline-variant dark:border-outline transition-colors duration-200">
+        <div class="flex items-center gap-lg flex-1">
+          <div class="relative w-full max-w-md">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary">search</span>
+            <input id="global-search-input" class="w-full pl-10 pr-4 py-2 bg-surface-container-low dark:bg-surface-dim border border-outline-variant dark:border-outline rounded-full text-body-md dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/20 dark:focus:ring-primary/40 focus:border-primary transition-all placeholder:text-secondary" placeholder="Cari arsip, pengguna, atau tugas..." type="text">
+            
+            <!-- Dynamic Global Search Result Popover -->
+            <div id="search-results-panel" class="hidden absolute top-12 left-0 right-0 max-h-80 overflow-y-auto bg-surface-container-lowest dark:bg-surface border border-outline-variant dark:border-outline rounded-xl shadow-2xl p-md z-50">
+              <!-- Content injected via JS -->
+            </div>
+          </div>
+        </div>
+        
+        <div class="flex items-center gap-md">
+          <!-- Notification Bell -->
+          <button id="notification-trigger" class="p-2 text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-low dark:hover:bg-surface-dim transition-colors rounded-full relative active:scale-95">
+            <span class="material-symbols-outlined">notifications</span>
+            <span id="notification-badge" class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full animate-bounce"></span>
+          </button>
+          
+          <!-- Quick Dark Mode Toggle -->
+          <button id="dark-mode-toggle" class="p-2 text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-low dark:hover:bg-surface-dim transition-colors rounded-full active:scale-95">
+            <span class="material-symbols-outlined">dark_mode</span>
+          </button>
+          
+          <div class="h-8 w-[1px] bg-outline-variant dark:bg-outline mx-2"></div>
+          
+          <!-- Settings Trigger -->
+          <button id="settings-trigger" class="p-2 text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-low dark:hover:bg-surface-dim transition-colors rounded-full active:scale-95">
+            <span class="material-symbols-outlined">settings</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Dynamic Page View Container -->
+      <div id="view-container" class="flex-1 p-margin-desktop max-w-max-width w-full mx-auto space-y-lg animate-fade-in">
+        <!-- Rendered HTML injected by app.js -->
+      </div>
+      
+    </main>
+
+    <!-- Floating Action Button for Quick Upload -->
+    <button id="global-fab" class="fixed bottom-margin-desktop right-margin-desktop w-14 h-14 bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all group z-50 cursor-pointer">
+      <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">add</span>
+      <div class="absolute right-16 bg-on-surface text-surface text-label-md px-3 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-md">
+        Unggah File Baru
+      </div>
+    </button>
+  </div>
+
+
+  <!-- ================================================================= -->
+  <!-- ========================= MODAL BOXES =========================== -->
+  <!-- ================================================================= -->
+
+  <!-- 1. Google Account Selector Modal (Sign-in Gate) -->
+  <div id="google-modal" class="hidden fixed inset-0 items-center justify-center bg-black/60 backdrop-blur-sm z-[100] animate-fade-in">
+    <div class="bg-surface-container-lowest dark:bg-surface p-lg rounded-2xl w-full max-w-[400px] border border-outline-variant dark:border-outline shadow-2xl animate-slide-up flex flex-col items-center">
+      <div class="w-12 h-12 bg-surface-container dark:bg-surface-container-high rounded-full flex items-center justify-center mb-md">
+        <svg height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"></path>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+        </svg>
+      </div>
+      <h3 class="text-headline-sm font-bold text-on-surface dark:text-white mb-xs text-center">Pilih Akun Google</h3>
+      <p class="text-body-sm text-secondary dark:text-secondary-fixed-dim text-center mb-lg">Lanjutkan untuk masuk ke sistem SIPARSIP</p>
+      
+      <!-- Dynamic Google Accounts List -->
+      <div id="google-accounts-list" class="w-full space-y-sm max-h-60 overflow-y-auto mb-lg">
+        <!-- Google accounts loaded by JS -->
+      </div>
+      
+      <button id="close-google-modal" class="w-full py-2 bg-surface-container-high dark:bg-surface-variant text-on-surface-variant rounded-lg font-bold hover:bg-surface-variant active:scale-95 transition-all text-body-md">Batal</button>
+    </div>
+  </div>
+
+  <!-- 2. Dynamic Settings Drawer Modal -->
+  <div id="settings-modal" class="hidden fixed inset-0 items-center justify-center bg-black/60 backdrop-blur-sm z-[100] animate-fade-in">
+    <div class="bg-surface-container-lowest dark:bg-surface p-lg rounded-2xl w-full max-w-[480px] border border-outline-variant dark:border-outline shadow-2xl animate-slide-up">
+      <div class="flex justify-between items-center mb-lg border-b border-outline-variant pb-md">
+        <div class="flex items-center gap-md">
+          <span class="material-symbols-outlined text-primary">settings</span>
+          <h3 class="text-headline-sm font-bold text-on-surface dark:text-white">Pengaturan Sistem</h3>
+        </div>
+        <button id="close-settings-modal" class="p-1 hover:bg-surface-container-high rounded-full transition-colors"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <div class="space-y-lg mb-lg">
+        <div>
+          <h4 class="text-label-md font-bold text-secondary uppercase mb-sm">Visual & Tema</h4>
+          <div class="flex items-center justify-between p-md bg-surface-container-low dark:bg-surface-dim rounded-xl border border-outline-variant/40">
+            <div>
+              <p class="text-body-md font-bold text-on-surface dark:text-white">Mode Gelap (Dark Mode)</p>
+              <p class="text-body-sm text-secondary">Ubah pencahayaan warna sistem</p>
+            </div>
+            <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+              <input type="checkbox" id="settings-dark-mode" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 border-outline-variant appearance-none cursor-pointer focus:outline-none"/>
+              <label for="settings-dark-mode" class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-variant cursor-pointer transition-colors"></label>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-label-md font-bold text-secondary uppercase mb-sm">Autentikasi Sesi</h4>
+          <div class="p-md bg-surface-container-low dark:bg-surface-dim rounded-xl border border-outline-variant/40 space-y-sm">
+            <p class="text-body-md text-on-surface dark:text-white">Anda masuk sebagai: <strong id="settings-session-user">Admin Utama</strong></p>
+            <button id="logout-btn" class="w-full flex items-center justify-center gap-md px-md py-sm bg-error-container hover:bg-error-container/80 text-on-error-container rounded-lg font-bold transition-all active:scale-95">
+              <span class="material-symbols-outlined text-[20px]">logout</span>
+              Keluar Sesi (Logout)
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Add/Edit User Governance Modal -->
+  <div id="user-modal" class="hidden fixed inset-0 items-center justify-center bg-black/60 backdrop-blur-sm z-[100] animate-fade-in">
+    <div class="bg-surface-container-lowest dark:bg-surface p-lg rounded-2xl w-full max-w-[500px] border border-outline-variant dark:border-outline shadow-2xl animate-slide-up">
+      <div class="flex justify-between items-center mb-lg border-b border-outline-variant pb-md">
+        <div class="flex items-center gap-md">
+          <span class="material-symbols-outlined text-primary" id="user-modal-icon">person_add</span>
+          <h3 class="text-headline-sm font-bold text-on-surface dark:text-white" id="user-modal-title">Tambah Pengguna Baru</h3>
+        </div>
+        <button id="close-user-modal" class="p-1 hover:bg-surface-container-high rounded-full transition-colors"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <form id="user-form" class="space-y-md">
+        <input type="hidden" id="user-form-id">
+        <div>
+          <label class="block text-label-md text-on-surface-variant dark:text-outline-variant font-bold mb-xs" for="user-form-name">Nama Lengkap</label>
+          <input type="text" id="user-form-name" required class="w-full bg-surface-container-low dark:bg-surface-dim border border-outline-variant dark:border-outline rounded-lg text-body-md px-md py-sm focus:ring-primary focus:border-primary dark:text-white">
+        </div>
+        <div>
+          <label class="block text-label-md text-on-surface-variant dark:text-outline-variant font-bold mb-xs" for="user-form-email">Alamat Email Organisasi</label>
+          <input type="email" id="user-form-email" required class="w-full bg-surface-container-low dark:bg-surface-dim border border-outline-variant dark:border-outline rounded-lg text-body-md px-md py-sm focus:ring-primary focus:border-primary dark:text-white">
+        </div>
+        <div class="grid grid-cols-2 gap-md">
+          <div>
+            <label class="block text-label-md text-on-surface-variant dark:text-outline-variant font-bold mb-xs" for="user-form-role">Peran Sistem (Role)</label>
+            <select id="user-form-role" class="w-full bg-surface-container-low dark:bg-surface-dim border border-outline-variant dark:border-outline rounded-lg text-body-md px-md py-sm focus:ring-primary focus:border-primary dark:text-white">
+              <option value="Manager">Manager</option>
+              <option value="Arsiparis">Arsiparis</option>
+              <option value="Anggota">Anggota</option>
+              <option value="Super Administrator">Super Administrator</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-label-md text-on-surface-variant dark:text-outline-variant font-bold mb-xs" for="user-form-cluster">Kluster Akses Utama</label>
+            <select id="user-form-cluster" class="w-full bg-surface-container-low dark:bg-surface-dim border border-outline-variant dark:border-outline rounded-lg text-body-md px-md py-sm focus:ring-primary focus:border-primary dark:text-white">
+              <!-- Clusters populated by JS -->
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="block text-label-md text-on-surface-variant dark:text-outline-variant font-bold mb-xs" for="user-form-status">Status Akun</label>
+          <select id="user-form-status" class="w-full bg-surface-container-low dark:bg-surface-dim border border-outline-variant dark:border-outline rounded-lg text-body-md px-md py-sm focus:ring-primary focus:border-primary dark:text-white">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+        <div class="flex gap-md pt-lg border-t border-outline-variant mt-lg">
+          <button type="button" id="cancel-user-modal" class="flex-1 py-2 border border-outline-variant dark:border-outline text-on-surface-variant rounded-lg font-bold hover:bg-surface-container-high transition-all active:scale-95 text-body-md dark:text-white">Batal</button>
+          <button type="submit" class="flex-1 py-2 bg-primary text-on-primary rounded-lg font-bold hover:opacity-90 transition-all active:scale-95 text-body-md">Simpan Pengguna</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. Upload File Modal -->
+  <div id="upload-modal" class="hidden fixed inset-0 items-center justify-center bg-black/60 backdrop-blur-sm z-[100] animate-fade-in">
+    <div class="bg-surface-container-lowest dark:bg-surface p-lg rounded-2xl w-full max-w-[500px] border border-outline-variant dark:border-outline shadow-2xl animate-slide-up">
+      <div class="flex justify-between items-center mb-lg border-b border-outline-variant pb-md">
+        <div class="flex items-center gap-md">
+          <span class="material-symbols-outlined text-primary">upload_file</span>
+          <h3 class="text-headline-sm font-bold text-on-surface dark:text-white">Unggah Berkas Baru</h3>
+        </div>
+        <button id="close-upload-modal" class="p-1 hover:bg-surface-container-high rounded-full transition-colors"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      
+      <div id="drop-zone" class="w-full h-40 border-2 border-dashed border-outline-variant dark:border-outline rounded-2xl flex flex-col items-center justify-center p-lg text-center cursor-pointer transition-all bg-surface-container-low/30 dark:bg-surface-container/10 hover:bg-surface-container-low/70">
+        <span class="material-symbols-outlined text-[48px] text-secondary mb-sm">cloud_upload</span>
+        <p class="text-body-md font-bold text-on-surface dark:text-white">Seret & letakkan berkas di sini</p>
+        <p class="text-body-sm text-secondary mt-xs">atau <span class="text-primary font-bold decoration-2 underline">pilih berkas manual</span></p>
+        <input type="file" id="manual-file-input" class="hidden">
+      </div>
+      
+      <!-- Upload progress indicator -->
+      <div id="upload-progress-container" class="hidden mt-lg p-md bg-surface-container border border-outline-variant rounded-xl">
+        <div class="flex justify-between items-center mb-xs">
+          <span id="upload-file-name" class="text-body-sm font-bold text-on-surface dark:text-white truncate max-w-[320px]">filename.pdf</span>
+          <span id="upload-percentage" class="text-label-md text-primary font-black">45%</span>
+        </div>
+        <div class="w-full bg-surface-variant dark:bg-outline-variant h-2 rounded-full overflow-hidden">
+          <div id="upload-progress-bar" class="bg-primary h-full w-[45%] transition-all duration-300"></div>
+        </div>
+      </div>
+      
+      <form id="upload-form" class="hidden space-y-md mt-lg animate-fade-in">
+        <div>
+          <label class="block text-label-md text-on-surface-variant dark:text-outline-variant font-bold mb-xs" for="upload-form-cluster">Pilih Kluster Arsip</label>
+          <select id="upload-form-cluster" class="w-full bg-surface-container-low dark:bg-surface-dim border border-outline-variant dark:border-outline rounded-lg text-body-md px-md py-sm focus:ring-primary focus:border-primary dark:text-white">
+            <!-- Populated by JS -->
+          </select>
+        </div>
+        <div class="grid grid-cols-2 gap-md">
+          <div>
+            <label class="block text-label-md text-on-surface-variant dark:text-outline-variant font-bold mb-xs" for="upload-form-classification">Klasifikasi Keamanan</label>
+            <select id="upload-form-classification" class="w-full bg-surface-container-low dark:bg-surface-dim border border-outline-variant dark:border-outline rounded-lg text-body-md px-md py-sm focus:ring-primary focus:border-primary dark:text-white">
+              <option value="Biasa">Biasa (Umum)</option>
+              <option value="Terbatas">Terbatas</option>
+              <option value="Sangat Rahasia">Sangat Rahasia</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-label-md text-on-surface-variant dark:text-outline-variant font-bold mb-xs" for="upload-form-size-mock">Ukuran File</label>
+            <input type="text" id="upload-form-size-mock" readonly class="w-full bg-surface-container border border-outline-variant rounded-lg text-body-md px-md py-sm text-secondary select-none">
+          </div>
+        </div>
+        
+        <div class="flex gap-md pt-lg border-t border-outline-variant mt-lg">
+          <button type="button" id="cancel-upload-modal" class="flex-1 py-2 border border-outline-variant dark:border-outline text-on-surface-variant rounded-lg font-bold hover:bg-surface-container-high transition-all active:scale-95 text-body-md dark:text-white">Batal</button>
+          <button type="submit" class="flex-1 py-2 bg-primary text-on-primary rounded-lg font-bold hover:opacity-90 transition-all active:scale-95 text-body-md">Simpan Arsip</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. Add Task Modal -->
+  <div id="task-modal" class="hidden fixed inset-0 items-center justify-center bg-black/60 backdrop-blur-sm z-[100] animate-fade-in">
+    <div class="bg-surface-container-lowest dark:bg-surface p-lg rounded-2xl w-full max-w-[500px] border border-outline-variant dark:border-outline shadow-2xl animate-slide-up">
+      <div class="flex justify-between items-center mb-lg border-b border-outline-variant pb-md">
+        <div class="flex items-center gap-md">
+          <span class="material-symbols-outlined text-primary">assignment</span>
+          <h3 class="text-headline-sm font-bold text-on-surface dark:text-white">Tambah Tugas Kearsipan</h3>
+        </div>
+        <button id="close-task-modal" class="p-1 hover:bg-surface-container-high rounded-full transition-colors"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <form id="task-form" class="space-y-md">
+        <div>
+          <label class="block text-label-md text-on-surface-variant dark:text-outline-variant font-bold mb-xs" for="task-form-title">Judul Tugas</label>
+          <input type="text" id="task-form-title" required class="w-full bg-surface-container-low dark:bg-surface-dim border border-outline-variant dark:border-outline rounded-lg text-body-md px-md py-sm focus:ring-primary focus:border-primary dark:text-white">
+        </div>
+        <div>
+          <label class="block text-label-md text-on-surface-variant dark:text-outline-variant font-bold mb-xs" for="task-form-desc">Deskripsi Tugas</label>
+          <textarea id="task-form-desc" rows="3" required class="w-full bg-surface-container-low dark:bg-surface-dim border border-outline-variant dark:border-outline rounded-lg text-body-md px-md py-sm focus:ring-primary focus:border-primary dark:text-white"></textarea>
+        </div>
+        <div class="grid grid-cols-2 gap-md">
+          <div>
+            <label class="block text-label-md text-on-surface-variant dark:text-outline-variant font-bold mb-xs" for="task-form-assign">Petugas Pelaksana</label>
+            <select id="task-form-assign" class="w-full bg-surface-container-low dark:bg-surface-dim border border-outline-variant dark:border-outline rounded-lg text-body-md px-md py-sm focus:ring-primary focus:border-primary dark:text-white">
+              <!-- Filled by JS -->
+            </select>
+          </div>
+          <div>
+            <label class="block text-label-md text-on-surface-variant dark:text-outline-variant font-bold mb-xs" for="task-form-priority">Prioritas</label>
+            <select id="task-form-priority" class="w-full bg-surface-container-low dark:bg-surface-dim border border-outline-variant dark:border-outline rounded-lg text-body-md px-md py-sm focus:ring-primary focus:border-primary dark:text-white">
+              <option value="Tinggi">Tinggi</option>
+              <option value="Sedang">Sedang</option>
+              <option value="Rendah">Rendah</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-md">
+          <div>
+            <label class="block text-label-md text-on-surface-variant dark:text-outline-variant font-bold mb-xs" for="task-form-date">Tenggat Waktu</label>
+            <input type="date" id="task-form-date" required class="w-full bg-surface-container-low dark:bg-surface-dim border border-outline-variant dark:border-outline rounded-lg text-body-md px-md py-sm focus:ring-primary focus:border-primary dark:text-white">
+          </div>
+          <div>
+            <label class="block text-label-md text-on-surface-variant dark:text-outline-variant font-bold mb-xs" for="task-form-status">Status Awal</label>
+            <select id="task-form-status" class="w-full bg-surface-container-low dark:bg-surface-dim border border-outline-variant dark:border-outline rounded-lg text-body-md px-md py-sm focus:ring-primary focus:border-primary dark:text-white">
+              <option value="todo">Belum Dimulai (To Do)</option>
+              <option value="in_progress">Sedang Dikerjakan (In Progress)</option>
+              <option value="done">Selesai (Done)</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="flex gap-md pt-lg border-t border-outline-variant mt-lg">
+          <button type="button" id="cancel-task-modal" class="flex-1 py-2 border border-outline-variant dark:border-outline text-on-surface-variant rounded-lg font-bold hover:bg-surface-container-high transition-all active:scale-95 text-body-md dark:text-white">Batal</button>
+          <button type="submit" class="flex-1 py-2 bg-primary text-on-primary rounded-lg font-bold hover:opacity-90 transition-all active:scale-95 text-body-md">Tambah Tugas</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 6. Add Cluster Modal -->
+  <div id="cluster-modal" class="hidden fixed inset-0 items-center justify-center bg-black/60 backdrop-blur-sm z-[100] animate-fade-in">
+    <div class="bg-surface-container-lowest dark:bg-surface p-lg rounded-2xl w-full max-w-[450px] border border-outline-variant dark:border-outline shadow-2xl animate-slide-up">
+      <div class="flex justify-between items-center mb-lg border-b border-outline-variant pb-md">
+        <div class="flex items-center gap-md">
+          <span class="material-symbols-outlined text-primary">folder_zip</span>
+          <h3 class="text-headline-sm font-bold text-on-surface dark:text-white">Tambah Kluster Penyimpanan</h3>
+        </div>
+        <button id="close-cluster-modal" class="p-1 hover:bg-surface-container-high rounded-full transition-colors"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <form id="cluster-form" class="space-y-md">
+        <div>
+          <label class="block text-label-md text-on-surface-variant dark:text-outline-variant font-bold mb-xs" for="cluster-form-name">Nama Kluster</label>
+          <input type="text" id="cluster-form-name" required placeholder="Contoh: HR & Finance" class="w-full bg-surface-container-low dark:bg-surface-dim border border-outline-variant dark:border-outline rounded-lg text-body-md px-md py-sm focus:ring-primary focus:border-primary dark:text-white">
+        </div>
+        <div>
+          <label class="block text-label-md text-on-surface-variant dark:text-outline-variant font-bold mb-xs" for="cluster-form-desc">Deskripsi Kluster</label>
+          <textarea id="cluster-form-desc" rows="3" required placeholder="Jelaskan jenis berkas yang diarsipkan di sini..." class="w-full bg-surface-container-low dark:bg-surface-dim border border-outline-variant dark:border-outline rounded-lg text-body-md px-md py-sm focus:ring-primary focus:border-primary dark:text-white"></textarea>
+        </div>
+        
+        <div class="flex gap-md pt-lg border-t border-outline-variant mt-lg">
+          <button type="button" id="cancel-cluster-modal" class="flex-1 py-2 border border-outline-variant dark:border-outline text-on-surface-variant rounded-lg font-bold hover:bg-surface-container-high transition-all active:scale-95 text-body-md dark:text-white">Batal</button>
+          <button type="submit" class="flex-1 py-2 bg-primary text-on-primary rounded-lg font-bold hover:opacity-90 transition-all active:scale-95 text-body-md">Buat Kluster</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- ======================== TOAST NOTIFICATION DRAWER ======================== -->
+  <div id="toast-container" class="fixed top-margin-desktop right-margin-desktop z-[200] flex flex-col gap-sm max-w-sm pointer-events-none">
+    <!-- Populated in real-time by JS -->
+  </div>
+
+
+  <!-- Load Database Engine and Core Logic in Order -->
+  <script src="db.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
